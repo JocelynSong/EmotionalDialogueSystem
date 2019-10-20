@@ -136,18 +136,18 @@ def train(config_file, pre_train_word_count_file, emotion_words_dir, post_file, 
         emotion_chat_machine.saver.save(emotion_chat_machine.session, checkpoint_path,
                                         global_step=(i * num_train_batch))
 
-    logger.info("Generate test data!\n")
-    test_batch = int(len(test_post_data) / chat_config.batch_size)
-    generate_data = []
-    for k in range(test_batch):
-        this_post_data, this_post_len, this_emotion_labels, this_emotion_mask = \
-            emotion_chat_machine.get_test_batch(test_post_data, test_post_data_length, test_label_data, k)
-        generate_words, new_embeddings = emotion_chat_machine.generate_step(this_post_data, this_post_len,
-                                                                            this_emotion_labels, this_emotion_mask)
-        generate_data.extend(generate_words)
-    generate_data = generate_data[: test_length]
-    test_label_data = test_label_data[: test_length]
-    write_test_data(generate_data, FLAGS.generate_response_file, id2words, test_label_data)
+#     logger.info("Generate test data!\n")
+#     test_batch = int(len(test_post_data) / chat_config.batch_size)
+#     generate_data = []
+#     for k in range(test_batch):
+#         this_post_data, this_post_len, this_emotion_labels, this_emotion_mask = \
+#             emotion_chat_machine.get_test_batch(test_post_data, test_post_data_length, test_label_data, k)
+#         generate_words, new_embeddings = emotion_chat_machine.generate_step(this_post_data, this_post_len,
+#                                                                             this_emotion_labels, this_emotion_mask)
+#         generate_data.extend(generate_words)
+#     generate_data = generate_data[: test_length]
+#     test_label_data = test_label_data[: test_length]
+#     write_test_data(generate_data, FLAGS.generate_response_file, id2words, test_label_data)
 
 
 def main(_):
