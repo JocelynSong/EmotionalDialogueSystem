@@ -45,7 +45,7 @@ def train(config_file, pre_train_word_count_file, emotion_words_dir, post_file, 
 
     logger.info("Now prepare data!\n")
     logger.info("Read stop words!\n")
-    stop_words = read_stop_words(FLAGS.stop_words_file)
+    # stop_words = read_stop_words(FLAGS.stop_words_file)
 
     logger.info("Construct vocab first\n")
     total_embeddings, total_word2id, total_word_list = read_total_embeddings(embedding_file, max_vocab_size)
